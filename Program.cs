@@ -52,8 +52,6 @@ namespace CodeHuntOne
         }
         public static string HiddenSecret()
         {
-            char[] remove = { '\"'};
-
             JObject secret = JObject.Parse(File.ReadAllText(@".\obfuscation.json"));
 
             using (StreamReader file = File.OpenText(@".\obfuscation.json"))
@@ -65,7 +63,6 @@ namespace CodeHuntOne
             var newSecret = secret.ToString();
             var adjustJson = JsonConvert.DeserializeObject(newSecret).ToString();
             string final = adjustJson.Split('\"')[3];
-            //https://www.base64decode.org/
 
             return final;
         }
